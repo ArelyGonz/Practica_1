@@ -1,0 +1,45 @@
+CODIFICAR
+
+Set stream = CreateObject("ADODB.Stream")
+ 
+With stream
+	.Open
+	.Type     = 2
+	.Position = 0
+	.Charset  = "utf-8"
+	.WriteText CreateObject("Scripting.FileSystemObject").OpenTextFile(WScript.Arguments(0), 1).ReadAll
+	.SaveToFile WScript.Arguments(1), 2
+	.Close
+End With
+ 
+Wscript.Quit(0)
+
+DECODIFICAR
+
+#coding=utf-8
+#Version:python 3.6.0
+#Tools:Pycharm 2017.3.2
+_date_ = '2019/04/17 22:00'
+_author_ = 'CXJ'
+ 
+import re
+import os
+import csv
+ 
+Nombre = "# Aquí ingresa el nombre del archivo
+txtName = name+".txt"
+csvName = name+".csv"
+ 
+ FP = ABIERTO (TXTNAME, "RB") # Abrir texto TXT
+ A = fp.read () # lectura text
+ Result = re.finall ('. * Valor = "(. *)" /.*', A.DECODE ('UTF-8')) FUMA REGULAR
+ List1 = [] # Esta lista se utiliza para almacenar temporalmente temporalmente
+ Porque en el resultado: # coincide con el contenido
+         Si yo! = '': # Filtrar caracteres en blanco
+                 Imprimir (i) # mira el contenido
+                 List1.Alpend (i) # Agregue una cadena a la lista y escríbela, de lo contrario, los caracteres se eliminarán en uno uno.
+                 #El continuación es la función de escribir archivos CSV, Newline = '' puede evitar el problema en blanco
+        with open(csvName, 'a', newline='') as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerow(list1)
+                 List1.pop () # escritura completada para eliminar cadenas en la lista
